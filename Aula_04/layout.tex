@@ -1,0 +1,192 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Aula 04, layout:                                                         %
+% Ambiente minipage, orientação da página com ambiente landscape,	     %
+% páginas em multicolunas com multicols;				     %
+% hspace, vspace, vfill, hfill, hrulefill.                                   %
+%--------------------------------------------------------------------------- %
+%----------------------------------------------------------------------------%
+\section{Layout da página:}
+\label{sec:lay}
+Ambiente minipage, orientação da página com o ambiente landscape, páginas em multicolunas com multicols, hspace, vspace, vfill, hrulefill.
+
+	\subsection{Minipage:}
+	Quando queremos alinhar textos ao lado de figuras/tabelas na página podemos usar o ambiente \textbf{minipage}, que cria uma página pequena(\textbf{minipage}) com o conteúdo do ambiente para depois alinha-la na página conforme desejado:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{minipage}[posição minipage][altura][posição conteúdo]{largura}
+	Texto,figura,tabela,etc	
+	\end{minipage}
+	\end{verbatim}
+	\end{center}
+
+	a \textbf{posição minipage} define a posição da \textbf{minipage} na página, valores: \textbf{c}(centro),\textbf{t}(topo) e \textbf{b}(fundo), valor padrão \textbf{h}(onde foi declarada); a \textbf{posição conteúdo} é a posição do conteúdo dentro da minipage(\textbf{t}, \textbf{c} e \textbf{b}); \textbf{altura} e \textbf{largura} definem as dimensões da \textbf{minipage}.
+
+	\vspace{0.5cm}
+	
+	Exemplo:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{minipage}{7cm}
+	Texto do lado esquerdo.
+	\end{minipage}\hfill
+	\begin{minipage}{7cm}
+	Figura/tabela do lado direito.
+	\end{minipage}
+	\end{verbatim}
+	\end{center}
+
+	produz:	
+	
+	\vspace{0.5cm}
+	\begin{minipage}{7cm}
+	Texto do lado esquerdo.
+	\end{minipage}\hfill
+	\begin{minipage}{7cm}
+	Figura/tabela do lado direito.
+	\end{minipage}
+
+	\subsection{Orientação da página:}
+	Por padrão um documento em \LaTeX\ tem a orientação da página como \textbf{portrait}, para mudar usamos o ambiente \textbf{landscape}, há dois modos de mudar a orientação, local e global(todo o documento);
+
+para modificar todo o documento usamos o pacote:
+
+	\verb!\usepackage[landscape]{geometry}!, porém se você também for definir o tamanho do papel com o \textbf{geometry} use:
+
+	\verb!\usepackage[a4paper,landscape]{geomertry}!.
+
+	Para mudar a orientação local use o ambiente \textbf{landscape}, por exemplo numa tabela:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{landscape}	
+	\begin{table}
+	\caption{Exemplo}
+	\centering % Opcional
+	\begin{tabular}{|l|c|}
+	\hline
+	A & B \\
+	\hline
+	C & D \\
+	\hline	
+	\end{tabular}
+	\end{table}
+	\end{landscape}
+	\end{verbatim}
+	\end{center} 
+
+	produz:
+
+	\begin{landscape}	
+	\begin{table}
+	\caption{Exemplo}
+	\centering % Opcional
+	\begin{tabular}{|l|c|}
+	\hline
+	A & B \\
+	\hline
+	C & D \\
+	\hline	
+	\end{tabular}
+	\end{table}
+	\end{landscape}
+
+	\subsection{space e fill:}
+	Muitas vezes o \LaTeX\ pode quebrar páginas e linhas de um modo indesejado, podemos usar os comandos de formatação de texto ~\ref{sec:quebra}, mas isso pode não funcionar com figuras,tabelas,etc para resolver esses problemas usamos os comandos que modificam o layout da página:
+	
+	\vspace{0.5cm}
+	\verb!\hspace{xcm}!, cria um espaço horizontal vazio de tamanho \textbf{x};
+
+	\verb!\vspace{xcm}!, cria um espaço vertical vazio de tamanho \textbf{x};
+
+	\verb!\hfill!, abreviação de \verb!\hspace{\fill}!, preenche o espaçamento horizontal padrão(tamanho da linha);
+
+	\verb!\vfill!, abreviação de \verb!\vspace{\fill}!, preenche o espaçamento vertical padrão(tamanho da página);
+
+	você pode usar o comando \verb!\hrulefill{xcm}!, para modificar o comando \verb!\hfill!, para não preencher toda a linha.	
+
+	\subsection{Multicolunas:}
+	Para criar um documento com duas colunas por página você pode usar no tipo de documento o argumento \textbf{twocolumn}:
+
+	\verb!\documentclass[twocolumn]{article}!, porém esse modo nem sempre é satisfatório, você pode ter problemas com a posição de figuras,tabelas,etc.
+
+	Por isso usamos o ambiente \textbf{multicols}, você precisa do pacote \verb!\usepackage{multicol}! para usar o ambiente; um exemplo de layout de duas colunas:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{multicols}{2}
+	1 coluna \vfill
+	2 coluna
+	\end{multicols}
+	\end{verbatim}
+	\end{center}
+
+	produz:
+
+	\begin{multicols}{2}
+	1 coluna \vfill
+	2 coluna
+	\end{multicols}
+
+	Você pode usar o comando \verb!\columnseprule{}! antes do ambiente \textbf{multicols} para definir a separação entre as colunas(valor padrão 0pt), exemplo:
+
+	\setlength{\columnseprule}{1pt}
+
+	\begin{center}	
+	\begin{verbatim}
+	\setlength{\columnseprule}{1pt}
+	\begin{multicols}{2}
+	1 coluna \vfill
+	2 coluna
+	\end{multicols}
+	\end{verbatim}
+	\end{center}
+
+	produz:
+
+	\begin{multicols}{2}
+	1 coluna \vfill
+	2 coluna
+	\end{multicols}
+
+	para mudar o espaço horizontal entre as colunas(valor padrão 10pt) usamos o comando antes do ambiente \textbf{multicols}: \verb!\columnsep{}!, exemplo:
+
+	\setlength{\columnsep}{20pt}
+
+	\begin{center}
+	\begin{verbatim}
+	\setlength{\columnsep}{20pt}
+	\begin{multicols}{2}
+	\end{verbatim}
+	\end{center}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%-------------------------------------------------------------------------------%

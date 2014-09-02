@@ -1,0 +1,45 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Apostila que serve de base para o curso de LaTeX. Aulas 01 à 11            %
+%----------------------------------------------------------------------------%
+% /* Tipo do Documento */                                                    %
+%----------------------------------------------------------------------------%
+\documentclass[11pt, a4paper]{article}
+%----------------------------------------------------------------------------%
+% /* Preâmbulo */                                                            %
+%----------------------------------------------------------------------------%
+% --> inclusão de Pacotes                                                    %
+%----------------------------------------------------------------------------%
+\usepackage[portuguese]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsthm, amsfonts}
+\usepackage{lscape}
+\usepackage{multicol}
+\usepackage{graphicx,color}
+\usepackage[colorlinks,linkcolor=blue,hyperindex]{hyperref}
+\usepackage{amsmath}
+%----------------------------------------------------------------------------%
+% --> declaração de Comandos                                                 %
+%----------------------------------------------------------------------------%
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%----------------------------------------------------------------------------%
+% /* Parte principal do Documento */                                         %
+%----------------------------------------------------------------------------%
+\begin{document}
+  \input{./Capa/capa.tex}
+  \tableofcontents
+  \input{./Aula_01/introducao.tex}
+  \input{./Aula_02/estruturas.tex}
+  \input{./Aula_03/formatacao.tex}
+  \input{./Aula_04/layout.tex}
+  \input{./Aula_05/tabelas.tex}
+
+  \input{./Aula_06/figuras.tex}
+  \input{./Aula_07/referencias.tex}
+  \input{./Aula_08/modo_matematico1.tex}
+  \input{./Aula_09/modo_matematico2.tex}
+  \input{./Aula_10/beamer-1.tex}
+  \input{./Aula_11/beamer-2.tex}
+\end{document}
+%----------------------------------------------------------------------------%

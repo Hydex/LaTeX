@@ -1,0 +1,283 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Aula 02, estruturas:                                                          %
+% Título e abstract, seções, apêndice e geração de índices, mensagens de erro,%
+% include, input e subfile.              					     %
+%--------------------------------------------------------------------------- %
+%----------------------------------------------------------------------------%
+
+\section{Seções:}
+ Título e abstract, seções, apêndice e geração de índices, mensagens de erro, include, input e subfile.
+
+	\subsection{Include, input e subfiles:}
+	Quando o texto se torna muito complexo podemos facilitar o trabalho quebrando o arquivo .tex em partes, usar múltiplos arquivos	é uma tática fácil no \LaTeX\ com os comandos:
+
+\verb! \input{}, \include{}, \includeonly{} e \subfile{}!.
+
+	\subsubsection{Input:}
+	O comando \verb!\input{nome do arquivo.tex}! é usado para ""unir"" pedaços de arquivos .tex, todo o conteúdo do \textbf{nome do arquivo.tex} será considerado, exemplo:
+    
+        \begin{center}
+	\textbf{arquivos.tex}:	
+	\begin{verbatim}
+	\begin{document}
+	\input{./arquivo1.tex}
+	\input{./arquivo2.tex}
+	\input{./arquivo3.tex}
+	\end{document} 
+	\end{verbatim}
+        \end{center}
+	quando o \textbf{arquivos.tex} for compilado, o \LaTeX\  irá procurar na pasta corrente o \textbf{arquivo1.tex}, \textbf{arquivo2.tex} e \textbf{arquivo3.tex} e irá unir \textbf{todo} o conteúdo deles em ordem, se algum arquivo não estiver na pasta corrente você precisa detalhar o destino dele, exemplo:
+
+\verb!\input{./meus arquivos/arquivo1.tex}! 
+
+(cuidado com os nomes dos arquivos, muitas vezes espaços em branco podem gerar erros, use \_ no lugar).
+
+	\subsubsection{Include:}
+
+	Podemos usar também o comando \textbf{include} no preâmbulo quando existirem muitos arquivos:
+\verb!\includeonly{nome do arquivo1, nome do arquivo2...}!
+e os comandos \verb!\include{nome do arquivo1}!, no corpo do arquivo.
+	
+	Existe também o comando \verb!\includepdf{}! que insere uma ou mais páginas de um arquivo PDF, para isso você precisa do pacote
+
+ \verb!\usepackage[final]{pdfiles}!, você pode também usar o \href{http://www.ctan.org/tex-archive/macros/latex/contrib/pdfpages/}{pdfpages packages};
+agora use o comando
+
+\verb!\includepdf[pages=1-2]{nome do arquivo.pdf}!, para imprimir as páginas 1 e 2
+
+\verb!\includepdf[pages=-]{nome do arquivo.pdf}!, para imprimir todas as páginas; compile a saída com o pdflatex para funcionar perfeitamente.   
+
+	\subsubsection{Subfile:}
+	Os comandos \verb!input{} e include{}! não são compilados individualmente, mas apenas quando o arquivo que os contém é compilado, se você precisa que os arquivos ""menores""  também sejam compilados previamente, você pode usar o pacote subfiles; primeiro no arquivo superior você precisa adicionar o pacote \verb!usepackage{subfiles}!, e agora em vez de usar os comandos
+
+\verb!input{nome do arquivo} e include{nome do arquivo}! use o
+
+\verb!\subfile{nome do arquivo}!,
+a última parte é adicionar no início dos arquivos ""menores"" o comando: 
+
+\verb!\documentclass[arquivo superior.tex]{subfiles}!.
+
+	\subsection{Título e abstract:}
+	Para gerar um título do documento usamos os comandos no corpo do arquivo 
+	\begin{center}
+	\begin{verbatim}
+	\title{título} 
+
+	\author{autor1 \\endereço1 \and autor2 \\endereço2}
+
+	\date{data}	
+	
+	\maketitle
+	\end{verbatim}
+	\end{center}
+	Você pode omitir o comando \verb!\date{data}!, assim o \LaTeX\ imprime a data atual; existe também o comando \verb!\thanks{rodapé}!
+	para texto de rodapé que pode ser usado no título, autor e data, como por exemplo:
+
+	\verb!\author{João \thanks{ O cara}}!;
+
+	se o tipo do documento for \textbf{book} os comandos geram uma página separada para o título do documento.
+
+	Você pode ainda criar um título mais complexo com o ambiente titlepage:
+
+	\verb!\begin{titlepage} \end{titlepage}!;
+
+	usando um arquivo separado para a capa, adicionando ela no documento com o comando \verb!\input{}!, podemos criar modelos mais complexos como por exemplo:
+
+	\begin{center}
+	\textbf{capa.tex}:
+	\begin{verbatim}
+	\begin{titlepage}
+
+	  \begin{center}
+	
+	    \textmd{ \LARGE Grupo}\\[1cm]
+	    % por uma logo bacana aqui %
+	    \textsc{ \Large Universidade Federal do Paraná}\\
+	    \textsc{ \Large Deparamento de}\\[1.5cm]
+	
+	    \HRule\\[0.3cm]
+	    { \huge Título }
+	    \HRule\\[1.5cm]
+	
+	      \emph{Professor Responsável :} \\
+	      Nome.\\[1cm]
+	
+	      \emph{Bolsistas : } \\
+	     	Nomes.\\
+	
+	    \vfill
+	    { \large \uppercase{Curitiba - PR}} \\
+	    { \large \today }
+	
+	  \end{center}
+	
+	\end{titlepage}
+	\end{verbatim}
+	\end{center} 
+
+	Em publicações cientificas é comum começar o documento com um resumo sobre o assunto que será tratado, para isso usamos o ambiente \textbf{abstract}, disponível apenas para os tipos de documento \textbf{article} e \textbf{report}, no corpo do arquivo use:
+	
+	\begin{center}
+	\begin{verbatim}
+	\begin{abstract}
+	Resumo do documento.	
+	\end{abstract}
+	\end{verbatim}
+	\end{center}
+
+	\subsection{Seções, apêndices e índices:}
+		\subsubsection{Seções:}
+		Você pode usar os seguintes comandos para produzir um seccionamento automático e sequencial:
+		\begin{verbatim}
+		\part{título}, 
+		\chapter{título},
+		\section{título},
+		\subsection{título}
+		\subsubsection{título}
+		\paragraph{título}
+		\subparagraph{título}
+		\end{verbatim}
+
+	O comando \verb!\part{}! é apenas para o tipo de documento \textbf{book}, o comando \verb!\chapter{}! \textbf{apenas} para os tipos \textbf{book} e \textbf{report}, os outros comandos podem ser usados em qualquer tipo de documento, exceto \textbf{letter}; esses comandos formam uma hierarquia, os capítulos (\verb!\chapter{}!) são divididos em seções (\verb!\section{}!), que são divididas em subseções e assim por diante.
+
+	Se o tipo de documento for \textbf{book}, então o comando \verb!\chapter{}! sempre começa o capítulo em uma nova página e normalmente, nas páginas de números ímpares, gerando uma página em branco se necessário; para evitar que ele gere uma página em branco, no tipo de documento defina:
+
+\verb!\documentclass[....,ondeside]{book}! imprime apenas em um lado do papel ou
+
+\verb!\documentclass[....,openany]{book}! os capítulos podem começar em páginas pares também.
+
+	A numeração das seções é automática, para \verb!\part{}! a numeração é romana (Part I,Part II...), capítulos e seções são números decimais e apêndices (um caso particular de \verb!\chapter!) são letras.
+
+	Você pode tirar a numeração das subseções e subsubseções com o comando \verb!\setcounter{secnumdepth}{1}!, o valor padrão é 2, ou com o comando
+	\verb!\section*{}! em cada seção;
+	o comando \verb!\setcounter{section}{3}! define o início da numeração, nesse caso a próxima seção será 4.
+
+	Para os capítulos você pode usar os comandos \verb!\frontmatter e \mainmatter!, as páginas entres esses comandos teram a numeração com algarismos romanos, e os capítulos após \verb!\mainmatter! serão numeradas em arábicos e recomeçam da página 1; existe também o comando \verb!\backmatter!, os capítulos depois dele não serão numerados.
+
+	\subsubsection{Apêndices:}
+	Para criar um apêndice no tipo de documento \textbf{book} ou \textbf{report} use o comando:
+	\begin{center}
+	\begin{verbatim}
+	\appendix
+	\chapter{Primeiro Apêndice}
+	\end{verbatim}
+	\end{center}
+	no tipo de documento \textbf{article} use:
+	\begin{center}
+	\begin{verbatim}
+	\appendix
+	\section{Primeiro Apêndice}
+	\end{verbatim}
+	\end{center}
+	
+	\subsubsection{Índices:}
+		O índice ou sumário (table of contents) é gerado automaticamente com o comando \verb!\tableofcontents!, se você usar o pacote \verb!\usepackage[portuguese]{babel}!, o título será ""Sumário"", para mudar o nome você precisa redefinir o comando:
+
+\verb!\renewcommand{\contentsname}{novo nome}!, antes de usar \verb!\tableofcontents!; as vezes é preciso compilar três vezes ou mais para que o índice seja impresso corretamente. Exemplo:
+
+	\begin{verbatim}
+	\documentclass[11pt, a4paper]{article}
+	\begin{document}
+	\input(capa.tex)
+	\tableofcontents
+	\input{./capitulo01.tex}
+	\input{./capitulo02.tex}
+	\end{document}
+	\end{verbatim}
+	
+	Você pode usar também o pacote \textbf{makeindex}
+	\subsection{Mensagens de erro:}
+	Quando o \LaTeX\  encontra um erro ele apresenta uma mensagem e para a execução, a descrição do erro começa após o ! e a linha onde o erro foi encontrado aparece logo abaixo:
+
+
+	\begin{center}
+	\fbox{
+	\parbox{10cm}{
+	!Missing \$ inserted
+	
+
+	<inserted text>
+
+
+	l.181 ...
+	}}				
+	\end{center}
+
+	para continuar a execução você precisa digitar uma das opções:
+
+	\begin{center}
+	\begin{tabular}{|l||p{12cm}|}
+	\hline
+	\textbf{Tecla}: & \textbf{Ação}:\\
+	\hline
+	\textbf{x} & Para imediatamente e sai do programa(e\textbf{x}it).\\
+	\hline
+	\textbf{q} & Ignora e continua o programa sem mostrar outros erros(\textbf{q}uietly)\\
+	\hline	
+	\textbf{e} & Para o programa e abre o editor de texto na linha do erro(\textbf{e}dito)\\
+	\hline	
+	\textbf{h} & Mostra uma possível solução para o erro(\textbf{h}elp)\\
+	\hline	
+	\textbf{i} & Insere uma solução e continua o programa, a solução é temporária você precisa mudar o arquivo para que o erro não aconteça novamente(\textbf{i}nput)\\
+	\hline	
+	\textbf{r} & Continua o programa ignorando erros, limite de 100 erros(\textbf{r}un)\\
+	\hline
+	\end{tabular}
+	\end{center}
+
+
+	\subsubsection{Erros conhecidos:}
+	Alguns erros comuns e suas soluções:
+	\begin{itemize}
+	\item\begin{center}
+	\fbox{
+	\parbox{10cm}{
+	!Too many \}'s.
+	
+	l.6 $\backslash$date Abril 2011\}
+	}}
+	\end{center}
+	Muitos \{'s, sempre que você abrir \{ não esqueça de fechar \}.
+
+
+	\item\begin{center}
+	\fbox{
+	\parbox{10cm}{
+	!Undefined control sequence.
+	
+	l.6 $\backslash$dtae {Abril 2011}
+	}}
+	\end{center}
+	Comando indefinido, o erro mais comum, erro de digitação; a menos que você defina um nome diferente para algum comando, $\backslash$dtae não é \verb!\date!.
+
+	\item\begin{center}
+	\fbox{
+	\parbox{10cm}{
+	!Missing \$ inserted
+	}}
+	\end{center}
+	Não está no modo matemático, um carácter que pode ser usado apenas no modo matemático foi inserido num texto normal, você pode mudar para o modo matemático com o comando \verb!\begin{math} \end{math}!; esse erro pode também aparecer se você usar uma codificação errada, como por exemplo definir o arquivo como UTF-8 sem adicionar o pacote \verb!\usepackage[utf8]{inputenc}! ou definir o arquivo como ISO8859-1 sem usar o pacote \verb!\usepackage[latin1]{inputenc}!, veja codificação ~\ref{sec:cod}.
+
+	\item\begin{center}
+	\fbox{
+	\parbox{10cm}{
+	!LaTeX Error: File paralisy.sty not found.
+	}}
+	\end{center}
+	Falta de pacote, quando você usa o comando \verb!\usepackage! para usar um pacote específico do \LaTeX\ ele irá procurar o nome do pacote.sty, você pode ter errado no nome do pacote ou o pacote não está instalado na sua máquina, você pode baixar oas arquivos .sty e colocar na pasta do documento a ser compilado.
+	
+
+	\item\begin{center}
+	\fbox{
+	\parbox{10cm}{
+	Package Babel Warning: No hyphenation patterns were loaded for the language 'Latin'
+
+	I will use the patterns loaded for $\backslash$language=0 instead.	
+	}}
+	\end{center}
+	Um erro comum ocorre do pacote \textbf{Babel} e não do \LaTeX\ , esse erro ocorre quando queremos usar o pacote \verb!\usepackage[latin1]{babel}!, a solução é instalar o pacote da língua usada, veja codificação ~\ref{sec:cod}.
+	\end{itemize}
+	
+%-------------------------------------------------------------------------------------------------------------------------------------%

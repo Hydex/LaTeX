@@ -1,0 +1,259 @@
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+% Descrição do Arquivo                                                       %
+% Arquivo que contém a aula 9 do curso de LaTeX dos bolsistas instrutores do %
+% Departamento de Informática da Universidade Federal do Paraná.             %
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+\section{Modo Matemático 2}
+
+  \subsection{Matrizes e Arrays}
+  Para escrevermos matrizes iremos usar o ambiente \emph{matrix} do modo
+  matemático. Abaixo temos um exemplo simples de matriz :
+
+  \begin{table}[h]
+    \centering
+
+    \begin{tabular}{p{0.3\textwidth} p{0.3\textwidth}}
+      \verb!\begin{matrix}!
+      \verb!a & b & c \\!
+      \verb!d & e & f \\!
+      \verb!g & h & i!
+      \verb!\end{matrix}!
+      &
+      \vspace{0.20cm}
+      $
+        \begin{matrix}
+        a & b & c \\
+        d & e & f \\
+        g & h & i
+        \end{matrix}
+      $
+
+      \tabularnewline
+    \end{tabular}
+  \end{table}
+
+  Assim como nas tabelas as colunas da matriz são separadas por \&. E como não
+  temos de especificar quantas colunas queremos devemos colocar um nova linha
+  par dizer que a coluna acabou. E as linhas terminam somente com um
+  \emph{end} do ambiente \emph{matrix}. Lembrando que é necessário adicionar o
+  pacote \emph{amsmath} para compilar corretamente o arquivo \TeX{} com a
+  matriz.
+
+
+  As matrizes normalmente são delimitadas por parênteses. Para isso iremos
+  usar ambientes pré-definidos que já incluem um delimitador, alguns deles
+  seriam :
+  \begin{table}[h]
+    \centering
+
+    \begin{tabular}{|c|c|}
+      \hline
+      Ambiente & Delimitador \\
+
+      \hline
+      pmatrix & ( ) \\
+
+      \hline
+      bmatrix & [ ] \\
+
+      \hline
+      vmatrix & $| |$ \\
+
+      \hline
+    \end{tabular}
+  \end{table}
+
+  Existem outros mas por uma questão didática iremos mostrar um exemplo usando
+  o ambiente \emph{pmatrix}. Abaixo segue o uso do ambiente \emph{pmatrix}
+  para construir uma matriz.
+
+  \newpage
+
+  \begin{table}[h]
+
+    \begin{tabular}{p{0.7\textwidth} p{0.3\textwidth}}
+      \verb!A_{m,n} =! \\
+      \verb!\begin{pmatrix}!
+      \verb!a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\!
+      \verb!a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\!
+      \verb!\vdots  & \vdots  & \ddots & \vdots  \\!
+      \verb!a_{m,1} & a_{m,2} & \cdots & a_{m,n}!
+      \verb!\end{pmatrix}!
+      &
+      \[
+        A_{m,n} =
+        \begin{pmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+        \vdots  & \vdots  & \ddots & \vdots  \\
+        a_{m,1} & a_{m,2} & \cdots & a_{m,n}
+        \end{pmatrix}
+      \]
+      \tabularnewline
+    \end{tabular}
+  \end{table}
+  
+
+  \subsection{Texto nas equações}
+  Às vezes é necessário colocar um pouco de texto juntamente com equações. É
+  importante observar que modo matemático o texto será tratado como se fosse
+  um monte de letras ou símbolos, o que não é o efeito desejado. Veja o que
+  acontece quando fazemos \verb!$x^2 < 2^x somente se x \geq 5$! no modo
+  matemático :
+  \[
+    x^2 < 2^x somente se x \geq 5
+  \]
+
+  Se queremos que o \LaTeX trate como texto as palavras dentro do matemático
+  devemos usar o comando \emph{text}. Caso queira adicionar formatação ao
+  texto temos os seguintes comandos :
+  \begin{description}
+    \item [text] apenas texto sem formatação.
+
+    \item [textit] texto em \textit{itálico}.
+
+    \item [textbf] texto em \textbf{negrito}.
+
+    \item [textrm] texto na fonte \textrm{Times New Roman}.
+  \end{description}
+
+  Reescrevendo o exemplo apresentado acima
+  \verb!x^2 < 2^x \textrm{ somente se } x \geq 5! com teremos o seguinte
+  resultado :
+  \[
+    x^2 < 2^x \textrm{ somente se } x \geq 5
+  \]
+
+  Observe que teve ser colocado espaços antes e depois do texto entre as
+  expressões. Isso acontece pois os espaços são desconsiderados dentro do modo
+  matemático.
+
+  \subsection{Enumeração de Equações}
+  Ao usar o ambiente \emph{equation} o \LaTeX enumera automaticamente as suas
+  equações. Além disso podemos colocar uma label dentro desse ambiente podendo
+  criar uma lista de equações ou fazer referência cruzada. Abaixo temos um
+  exemplo simples do uso do \emph{equation} :
+
+  \newpage
+
+  \begin{table}[h]
+    \centering
+
+    \begin{tabular}{p{0.2\textwidth} p{0.5\textwidth}}
+      \verb!\begin{equation}!
+        \verb!f(x) = (x+a)(x+b)!
+      \verb!\end{equation}!
+      &
+      \begin{equation}
+        f(x) = (x+a)(x+b)
+      \end{equation}
+
+      \tabularnewline      
+    \end{tabular}
+  \end{table}
+
+  % setar para começar enumerar a equação a partir de um número %
+  Assim como fazemos em outros ambientes podemos colocar uma label dentro
+  dele. Normalmente usamos o comando \emph{ref} para fazer referência uma
+  label. Com relação ao ambiente \emph{equation} ele também pode ser usado mas
+  é mais recomendado usar o \emph{eqref} nesse caso. Abaixo temos um exemplo
+  de como fazer uma referência a uma equação.
+  \begin{table}[h]
+    \begin{tabular}{p{0.4\textwidth} p{0.5\textwidth}}
+      \verb!\begin{equation} \label{eq:eq1}!
+        \verb!5^2 -5 = 20!
+      \verb!\end{equation}!
+      \verb!Referencia a equação \eqref{eq:eq1}!
+      &
+      \begin{equation} \label{eq:eq1}
+        5^2 -5 = 20
+      \end{equation}
+      \hspace{2cm} Referencia a equação \eqref{eq:eq1}
+
+      \tabularnewline
+    \end{tabular}
+  \end{table}
+
+  A enumeração das equações é relativa a seção ou a subseção. Esse
+  comportamento é setado no preambulo do documento da seguinte forma :
+  \begin{description}
+    \item [Numeração relativo a seção] \verb!\numberwithin{equation}{section}!
+
+    \item [Numeração relativo a subseção] \verb!\numberwithin{equation}{subsection}!
+  \end{description}
+  
+  \subsection{Comando align}
+  Quando queremos colocar mais de uma equação ou ela ocupa mais de uma linha o
+  comando \emph{align} nos permite fazer a formatação necessária para isso. Um
+  exemplo seria colocar estas equações $a_n = a_1 + (n-1)r$ e $a_n = a_{n-1} +
+  r$ dentro de um ambiente \emph{subequations}, para isso basta fazer o
+  seguinte :
+  \begin{table}[h]
+    \begin{tabular}{p{0.2\textwidth} p{0.6\textwidth}}
+      \verb!\begin{subequations}!
+        \verb!\begin{align}!!
+          \verb!a_n = a_1 +(n-1)r \\!
+          \verb!a_n = a_{n-1} + r!
+        \verb!\end{align}!
+      \verb!\end{subequations}!
+      &
+      \begin{subequations}
+        \begin{align}
+          a_n = a_1 +(n-1)r \\
+          a_n = a_{n-1} + r
+        \end{align}
+      \end{subequations}
+
+      \tabularnewline
+    \end{tabular}
+  \end{table}
+
+  Agora se temos uma equação ou expressão que é muito grande para caber numa
+  linha devemos fazer o seguinte : \\
+  \begin{minipage}{0.6\textwidth}
+    \verb!\begin{align}!
+      \verb!f(x) &= x^4 + 7x^3 + 2x^2 \nonumber \\!
+      \verb!&\qquad {} + 10x + 12!
+    \verb!\end{align}!
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+    \begin{align}
+      f(x) &= x^4 + 7x^3 + 2x^2 \nonumber \\
+      &\qquad {} + 10x + 12
+    \end{align}
+  \end{minipage}
+
+  É importante observar que a escrita tem a mesma dinâmica do que escrever uma
+  matriz. Ou seja o \& separa cada coluna. Nesse caso temos f(x) na primeira
+  coluna e na segunda temos a equação. Como usual o \verb!\\! indica a quebra
+  de linha. O comando \emph{nonumber} é utilizado pois a enumeração no
+  ambiente \emph{align} é diferente do \emph{equation}. E por isso precisamos
+  dizer para o \emph{align} não enumerar a equação na linha. Nesse caso apenas
+  a última linha não possui o \emph{nonumber} porque quero enumerar apenas a
+  última linha da equação.
+
+  \subsection{Ambientes cases}
+  Para escrevermos funções que são escritas usando \{ iremos usar o
+  ambiente \emph{dcases}. Assim como outro ambientes já mostrados o
+  ambiente \emph{cases} é escrito no mesmo estilo de uma
+  tabela. Abaixo temos um exemplo de uso do \emph{cases} :
+  \begin{minipage}{0.5\textwidth}
+    \verb!\[! \\
+     \verb!u(x) =! \\
+      \verb!\begin{cases}! \\
+        \verb!\exp{x} & \text{if } x \geq 0 \\! \\
+        \verb!1       & \text{if } x < 0! \\
+      \verb!\end{cases}! \\
+    \verb!\]!
+  \end{minipage}
+  \begin{minipage}{0.5\textwidth}
+    \[
+     u(x) =
+      \begin{cases}
+        \exp{x} & \text{if } x \geq 0 \\
+        1       & \text{if } x < 0
+      \end{cases}
+    \]
+  \end{minipage}
+  
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%

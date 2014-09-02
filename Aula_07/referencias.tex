@@ -1,0 +1,151 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Fala como fazer referências a labels, hiperlinks, figuras, tabelas, gerar  %
+% lista de figuras. E usar o BibTeX para fazer referências.                  %
+%----------------------------------------------------------------------------%
+\section{Referências}
+Iremos mostrar como fazer referências no \LaTeX usando \emph{labels,
+  hiperlinks} e Bib\TeX.
+
+  \subsection{Usando labels}
+  Podemos usar as \emph{labels}, colocadas em figuras, tabelas, texto e
+  outros, juntamente com o comando \emph{ref} para referenciá-las. Abaixo
+  temos uma descrição desses comandos :
+  \begin{description}
+    \item [label] deixa uma marca no texto para ser usada depois. Por exemplo,
+      : \verb!\label{nome_marca}! o nome nome\_marca será usado por comandos
+      como \emph{ref}.
+
+    \item [ref] usa um nome definido por uma \emph{label} e imprime o número
+      do objeto, que pode ser várias coisas. Um exemplo do uso do comando
+      \emph{ref} seria : \verb!\ref{nome_marca}! em que nome\_marca é um nome
+      de uma \emph{label}.
+  \end{description}
+
+  E por fim temos o comando \emph{pageref} que é equivalente ao comando
+  \emph{ref} só que imprime o número da página da \emph{label}.
+
+    \subsubsection{Organizando labels}
+    É normal que num texto tenha bastante \emph{labels} e como ela pode ser
+    usada em diversos locais. A seguinte organização é sugerida para ficar
+    mais fácil saber o que está sendo referenciado :
+    \begin{description}
+      \item [fig:] figura.
+
+      \item [sec:] sessão.
+
+      \item [tab:] tabela.
+
+      \item [eq:] equação.
+
+      \item [lst:] lista.
+    \end{description}
+
+    Um exemplo dessa organização pode ser visto abaixo : \\
+    \verb!Veja a figura \ref{fig:teste} na página \pageref{fig:teste}!.
+
+  \subsection{Usando hiperlinks}
+  Agora iremos mostrar como criar hiperlinks no \LaTeX usando os comandos
+  \emph{hypertarget} e \emph{hyperlink} do \emph{pacote \textbf{hyperref} }.
+  Segue abaixo a descrição e funcionamentos desses comandos :
+  \begin{description}
+    \item [hypertarget] cria uma ponto de referência no texto da seguinte
+      forma : \verb!\hypertarget{nome_ref}{texto que será impresso}!
+
+    \item [hyperlink] cria um link para uma \emph{hypertarget} da seguinte
+      forma :
+      \verb!\hyperlink{nome_ref}{fazendo uma referência a uma target}!
+  \end{description}
+
+  Ao usarmos o \emph{hyperlink} ele destaca a palavra no texto, por colocar um
+  cor diferente ou uma caixa nela\footnote{Você pode ajustar essas opções no
+    pacote \emph{\textbf{hyperref}}}.
+
+  Podemos mudar esse comportamento por setar opções no pacote, como abaixo :
+  \begin{description}
+    \item [colorlinks=true] deixa a palavra colorida ao invés de criar uma
+      quando em torno dela.
+
+    \item [citecolor=green] a palavra usada para fazer uma citação a um livro
+      fica de cor verde.
+  \end{description}
+
+  Existem diversas opções que podem ser usadas, para maiores informações
+  acesse o seguinte link \url{http://en.wikibooks.org/wiki/LaTeX/Hyperlinks}.
+
+  \subsection{Gerando lista de tabelas e figuras}
+  Em trabalhos acadêmicos é normal fazer uma lista de figuras e tabelas junto
+  com o índice. Iremos mostrar como fazer isso com o \LaTeX utilizando os
+  \emph{captions} colocados tanto em figuras quanto em tabelas.
+
+  Assim como o índice é feito pelo comando \verb!\tableofcontents! a lista de
+  figuras e tabelas são geradas pelos respectivos comandos : 
+  \verb!\listoffigures! e \verb!\listoftables! . Lembrando que estas listas
+  são feitas por coletar os \emph{captions} inseridos nas figuras ou tabelas.
+
+  \subsection{Fazendo referências com o Bib\TeX}
+  Uma maneira de fazer referências a livros, periódicos ou outras fontes de
+  informação é por usar o Bib\TeX. Ele as organiza uma arquivo .bib de acordo
+  com o tipo de documento.
+
+  Como exemplo iremos mostrar como colocar artigo e um livro num arquivo
+  Bib\TeX. Ao criarmos uma referências temos campo obrigatórios e opcionais,
+  os campos opcionais são indicados por um \% na frente.
+
+  \begin{verbatim}
+    @article{nome_citacao_artigo,
+      author    = ",
+      title     = ",
+      journal   = ",
+      %volume   = ",
+      %number   = ",
+      %pages    = ",
+      year      = "",
+      %month    = ",
+      %note     = ",
+    }
+  \end{verbatim}
+
+  \begin{verbatim}
+    @book{nome_citacao_livro,
+      author    = ",
+      title     = ",
+      publisher = ",
+      %volume   = ",
+      %number   = ",
+      %series   = ",
+      %address  = ",
+      %edition  = ",
+      year      = "",
+      %month    = ",
+      %note     = ",
+    }
+  \end{verbatim}
+
+  Depois de ter criado o arquivo .bib precisamos especificar no arquivo .tex
+  aonde ele está e o tipo de formatação das referências. Isso é feito no fim
+  do arquivo .tex com os seguintes comandos :
+  \begin{verbatim}
+    \bibliographystyle{plain}
+    \bibliography{arquivo_bib}
+  \end{verbatim}
+
+  O comando \emph{bibliographystyle} é quem define o tipo de formatação,
+  existem diversos tipos além do plain. O comando \emph{bibliography} diz
+  aonde está o arquivo .bib, um observação importante é que não é necessário
+  colocar o .bib no final do nome do arquivo. Feito isso estamos quase prontos
+  parar gerar o documento com as citações.
+
+  O \LaTeX só vai inserir apenas as referências que você pedir pelos comandos
+  \verb!\cite{nome_citacao_artigo}! e \verb!\nocite{nome_citacao_livro}!. Caso
+  queria gerar o documento com todas as citações na sessão de referências
+  basta fazer um \verb!\nocite{*}!.
+
+  Com as citações feitas no arquivo .tex vamos compilá-lo para o \LaTeX
+  descobrir que existe citações sem referências. Isso será anotado nos arquivo
+  .log e .aux . Para podermos fazer com que o \LaTeX saiba aonde está as
+  referências, iremos usar o comando \emph{bibtex} no arquivo .aux para fazer
+  os devidos ajustes. E por fim vamos compilar o arquivo .tex novamente para
+  usar as informações no .aux para construir as referências de forma certa.
+%----------------------------------------------------------------------------%

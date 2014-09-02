@@ -1,0 +1,141 @@
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+% Descrição do Arquivo                                                       %
+% Contém a segunda parte da aula de beamer do curso de LaTeX dos Bolsistas   %
+% Instrutores do Departamento de Informática da Universidade Federal do      %
+% Paraná.                                                                    %
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+\section{Beamer 2}
+
+\subsection{Ambiente columns}
+Vimos os ambientes que criam caixas de texto como \emph{block} organizando o
+texto horizontalmente. Além disso temos o ambiente \emph{columns} que
+estrutura o texto verticalmente. Ou seja cria colunas numa apresentação
+colocando o texto lado a lado. O código abaixo faz esse tipo de divisão do
+texto :
+
+\begin{minipage}{0.4\textwidth}
+  \verb!\begin{columns}[c]! \\
+    \hspace{1cm}\verb!\column{.5\textwidth}! \\
+    \hspace{1cm}\verb!Conteúdo da primeira coluna. \\! \\
+
+    \hspace{1cm}\verb!\column{.5\textwidth}! \\
+    \hspace{1cm}\verb!Segundo coluna \\! \\
+    \hspace{1cm}\verb!Mais uma linha! \\
+
+  \verb!\end{columns}!
+\end{minipage}
+
+É importante observar que a cada \emph{column} cria uma coluna. Com isso não é
+necessário dizer quantas colunas queremos, basta apenas um \emph{column} para
+criar uma coluna. Além disso dentro de um comando \emph{column} nada impede
+termos outro ambiente \emph{columns}. Isso significa que podemos criar uma
+coluna dentro de uma coluna. Outro aspecto do comando \emph{column} é a
+largura da coluna que é especificada pelas medidas de comprimento do \LaTeX,
+como centímetros, \verb!\textwidth! e outros.
+
+A disposição dos elementos dentro do ambiente \emph{columns} é definida pela
+letra entre colchetes logo após o nome do ambiente. Existe basicamente duas
+formas de alinhar o texto sendo ele centralizado \verb!\begin{columns}[c]!
+, ou com o topo da coluna \verb!\begin{columns}[t]!.
+
+
+\subsection{Comando pause}
+Em algumas apresentações vemos o efeito de fazer aparecer item a item de forma
+incremental. Isso pode ser feito no beamer por usado o comando \emph{pause}.
+Essa animação pode ser feita pelo código abaixo :
+
+\begin{flushleft}
+  \verb!\begin{frame}! \\
+  \verb!\frametitle{Tíutlo do frame}! \\
+  \verb!Começa aqui a animação! \\
+  \verb!\pause! \\
+  \verb!item um! \\
+  \verb!\pause! \\
+  \verb!item dois! \\
+  \verb!\end{frame}!
+\end{flushleft}
+
+O resultado disso é uma apresentação que no primeiro slide temos apenas a
+primeira frase. E uma nova página para cada \emph{pause}. Numa apresentação
+isso faz com que as demais frases apareçam uma por vez.
+
+Podemos produzir esse mesmo efeito usando o ambiente \emph{itemize}
+adicionando parâmetros aos comandos \emph{item}. Os argumentos são inseridos
+da seguinte forma :
+\begin{description}
+  \item [item$<n->$] aparece a partir da $n$-ésima vez em diante.
+
+  \item [item$<n-m>$] fica visível a partir da $n$-ésima até a $m$-ésima.
+
+  \item [item$<n>$] aparece apenas na $n$-ésima vez.
+\end{description}
+
+Abaixo temos um exemplo de como usar o \emph{itemize} para criar itens que
+aparecem apenas em determinados momentos :
+\begin{flushleft}
+  \verb!\begin{itemize}! \\
+    \verb!\item sempre será mostrado! \\
+    \verb!\item<2-> Aparece a partir da segunda! \\
+    \verb!\item<2-4> É mostrado da segunda até a quarta! \\
+    \verb!\item<4> Mostrado apenas na quarta vez! \\
+  \verb!\end{itemize}!
+\end{flushleft}
+
+
+\subsection{Customizando o tema}
+O beamer possui uma série de temas padrões e a partir deles podemos mudar
+alguns aspectos. Dentre eles iremos trabalhar com as cores que compõe um
+tema. Parar isso iremos usar dois tipos de comandos sendo um para uma solução
+pronta e outra que você especifica os atributos. Para solução pronta iremos
+usar o comando \emph{usecolortheme} descrito abaixo :
+
+\begin{description}
+  \item [usecolortheme] altera as cores do tema a partir de uma lista
+    pré-definida.
+\end{description}
+
+O link a seguir tem uma matriz que mostras as combinações das cores que podem
+ser feitas usando o comando \emph{usecolortheme} e o temas do \LaTeX :
+\url{http://www.hartwork.org/beamer-theme-matrix/}
+
+
+Caso seja necessário uma maior customização do tema, ela é feita usando os
+comandos abaixo :
+\begin{description}
+  \item [useinnertheme] especifica o layout interno da apresentação. Ele tem
+    as seguintes opções :
+    \begin{itemize}
+      \item rectangles
+
+      \item circles
+
+      \item inmargin
+
+      \item rounded
+    \end{itemize}
+
+  \item [useoutertheme] especifica as cores as cores do cabeçalho e dos roda
+    pé de cada slide. Para ele podemos setar os seguintes valores :
+    \begin{itemize}
+      \item infolines
+
+      \item miniframes
+
+      \item shadow
+
+      \item sidebar
+
+      \item smoothbars
+
+      \item smoothtree
+
+      \item split
+
+      \item tree
+    \end{itemize}
+\end{description}
+
+Para maiores informações sobre o uso do \emph{beamer} para fazer apresentações
+sugiro olhar o seguinte link : 
+\url{www.math.utah.edu/~smith/AmberSmith_GSAC_Beamer.pdf}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%

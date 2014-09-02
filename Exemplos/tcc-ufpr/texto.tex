@@ -1,0 +1,25 @@
+Exemplo de figura:
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=0.5]{images/swipl.png}
+\caption{SWI-Prolog Logo}
+\label{fig:swipl}
+\end{figure}
+
+Exemplo de referência para uma figura \ref{fig:swipl}.
+
+Exemplo de código:
+
+\begin{lstlisting}[style=customProlog, caption={Predicado Fatorial},label={lst:pred_fat}]
+fatorial(0,1)
+
+fatorial(N,F):-
+¬\label{lst:pred_fat_4}¬    N>0,
+¬\label{lst:pred_fat_5}¬    N1 is N-1,
+  fatorial(N1,F1),
+  F is N*F1  
+\end{lstlisting}
+
+Exemplo de referência para código \ref{lst:pred_fat}, exemplo de referência para
+linhas específicas do código \ref{lst:pred_fat_4}-\ref{lst:pred_fat_5}.

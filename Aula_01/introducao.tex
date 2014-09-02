@@ -1,0 +1,169 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Aula 01, introdução:                                                       %
+% O que é Latex, Links Importantes, Estrutura básica de um documento em LaTeX,%
+% classes de documentos, pacotes e codificação.                            %
+%--------------------------------------------------------------------------- %
+
+\section{Introdução:}
+ O que é o \LaTeX\ , links importantes, estrutura básica de um documento em \LaTeX\ , classes de documentos, pacotes e codificação.
+	\subsection{O que é o LaTeX:}
+	O \LaTeX\ é um conjunto de macros para \TeX\ (linguagem de programação para edição de textos) que facilita a edição de textos complexos, arquivos \LaTeX\ tem a extensão .tex, e precisam ser compilados para um formato legível como .pdf, .dvi, .ps... em um arquivo .tex nem tudo que você escrever será visto pelo leitor, a vantagem disso é que o arquivo a ser visualizado não precisa guardar informações sobre edição e o leitor não pode editar o texto(a menos que tenha o arquivo .tex).
+
+Para escrever em \LaTeX\ você precisa de um editor de texto de sua preferência, como bloco de notas, emacs, gedit... e um compilador de \LaTeX; para o ambiente Windows você pode usar o MIK\TeX, um editor e compilador de arquivos com extensão .tex.
+
+No ambiente Linux, use o comando \textbf{latex} \textbf{arquivo.tex}, para compilar e gerar \textbf{arquivo.dvi}, ou \textbf{pdflatex} para gerar o \textbf{arquivo.pdf}(precisa compilar antes).
+
+	\subsection{Links:}
+\textbf{Mais informações sobre o \LaTeX\ na internet:}
+
+
+\begin{itemize}
+\item Obtendo MIK\TeX (Windows): 
+
+
+\href{http://miktex.org/}{\texttt{http://miktex.org/}}.
+\item Wikibooks \LaTeX\ :
+
+\href{http://pt.wikibooks.org/wiki/Latex}{\texttt{http://pt.wikibooks.org/wiki/Latex}}.
+\item The (not) so short Introduction to \LaTeX\ :
+
+\href{http://www.ctan.org/tex-archive/info/lshort/}{\texttt{http://www.ctan.org/tex-archive/info/lshort/}}.
+\item ABN\TeX\ :
+
+\href{http://abntex.codigolivre.org.br}{\texttt{http://abntex.codigolivre.org.br}}.
+\end{itemize}
+
+\subsection{Estrutura básica:}
+Vamos ver um exemplo de um arquivo fonte para o \LaTeX\ :
+
+\begin{center}
+\begin{verbatim}
+\documentclass[11pt, ar4paper]{article}
+% Comandos globais
+\usepackage[portuguese]{babel}
+\usepackage[latin1]{inputenc}
+\begin{document}
+% Texto e comandos locais
+Hello World!
+\end{document}
+\end{verbatim}
+\end{center}
+
+O texto foi obtido com o ambiente verbatim:
+
+\verb!\begin{verbatim}!
+
+
+O texto nesse ambiente é impresso exatamente como digitado.
+
+
+\verb!\end{verbatim}!
+
+
+O ambiente verbatim cria um paragrafo para o texto, para o mesmo efeito porém dentro de uma linha use o comando \verb#\verb!texto!# , se você usar o carácter ! no texto, pode substitui-lo por outro não usado no texto, como \# . 
+
+
+
+
+ Um arquivo em \LaTeX\ contém o texto e comandos de como o texto deve ser processado, palavras são separadas por um ou mais espaços, parágrafos são separados por uma ou mais linhas em branco; comandos são iniciados com $\backslash$, uma $\backslash$ sozinha produz um espaço; lembre-se de não digitar nenhum dos caracteres especiais \verb!& $ # % _ { } ^ ~ \! exceto como um comando, para imprimir esses caracteres use os comandos:
+
+
+\verb!\& \$ \# \% \_ \{ \} \^{} \~{} $\backslash$!; 
+
+para ``aspas"\  use \verb!``aspas"!, veja também os comandos para fechar/criar páginas e pulo de linha em ~\ref{sec:quebra} e comandos para modificar o layout da página em ~\ref{sec:lay}.
+
+
+Um ambiente é uma região do texto que tem um tratamento especial definido pelo autor, um ambiente começa com \verb!\begin{nome do ambiente}! e termina com \verb!\end{nome do ambiente}!, como por exemplo o ambiente \verb!\begin{document} e \end{document}! que define onde começa e termina o arquivo a ser processado pelo \LaTeX\  
+
+Normalmente todo arquivo .tex tem um preâmbulo e um corpo, tudo entre \verb!\documentclass{}! e \verb!\begin{document}! é o preâmbulo do arquivo, as definições aqui afetam todo o documento, como tipo do documento, formato do papel, altura e largura do texto, se nenhuma definição for escolhida o \LaTeX\ define valores standart;
+\verb!\documentclass{}! define a classe do documento, \verb!\begin{document}! e
+\verb!\end{document}! definem o começo e o final do arquivo, o corpo do arquivo, com o texto e seus comandos locais;
+oquê estiver escrito após \% é um comentário e será ignorado pelo \LaTeX\ .
+
+
+\subsection{Classes de documentos e pacotes}
+\subsubsection{Classes de documentos}
+ No comando \verb!\documentclass[opções]{estilo}!, o \textbf{estilo} pode ser: \textbf{article}, \textbf{report}, \textbf{book} ou \textbf{letter}, as \textbf{opções} são: \textbf{10pt}, \textbf{11pt} ou \textbf{12pt} para o tamanho base das letras do texto; \textbf{a4paper} se o papel for A4 (para o estilo letter não é necessário nenhuma indicação), \textbf{landscape} para a impressão no modo paisagem, \textbf{twocolumn} para a impressão em duas colunas, \textbf{twoside} para a impressão nos dois lados do papel, \textbf{titlepage} para que no estilo \textbf{article} seja gerada uma página separa com o título (para os outros estilos não é necessária esta opção).
+\subsubsection{Pacotes}
+
+
+\verb!\usepackage[portuguese]{babel}! indica para usar o pacote \textbf{babel}, com a opção de língua \textbf{portuguese}, gera datas e nomes como Capítulo, Bibliografia em português com estilo brasileiro.
+
+
+\verb!\usepackage{graphicx,color}! indica para usar os pacotes \textbf{graficx} e \textbf{color}, que permitem incluir figuras e colorir o texto.
+
+
+\verb!\graphicspath{{../figuras/}}! o sistema vai procurar as figuras na pasta \textbf{figuras} que fica na mesmo pasta com os arquivos .tex.
+
+
+\verb!\usepackage[latin1]{inputenc}! indica para usar o pacote \textbf{inputenc} com a opção \textbf{latin1}, que define uma codificação para os caracteres em que os acentos são digitados diretamente pelo teclado.
+
+
+\verb!\usepackage{amsthm,amsfonts}! indica para usar os pacotes da American Mathematical So-ciety \textbf{amsthm} e \textbf{amsfonts}. O primeiro, entre outras coisas, define um estilo para a escrita dos teoremas e o segundo adiciona alguns estilos de letras, por exemplo $\mathbb{R}$, $\mathbb{C}$ e $\mathbb{N}$ foram geradas com \verb!$\mathbb{R}$!, \verb!$\mathbb{C}$! e \verb!$\mathbb{N}$! por causa da adição deste pacote.
+
+
+\verb!\setlength{\textwidth}{16 cm}! indica que a largura do texto é de 16 cm.
+
+
+\verb!\setlength{\textheight}{20 cm}! indica que a altura do texto é de 20 cm.
+
+
+\verb!\evensidemargin 0 cm! indica que a margem esquerda das páginas pares é zero (tamanho real da margem é a soma da variável \verb!\hoffset!).
+
+
+\verb!\oddsidemargin 0 cm! indica que a margem esquerda das páginas é zero.
+
+
+\verb!\topmargin 0 cm! indica que a margem superior é zero.
+
+
+\verb!\baselineskip 65 mm! define a distância entre as linhas como sendo de 65 mm.
+
+
+\verb!\sloppy! reduz o número de divisões nas palavras que são impressas nos finais das linhas.
+
+
+ Você pode também ``criar"\  novos comandos com o \verb!\newcommand!, como definir nomes mais simples para comandos com nomes grandes, por exemplo:
+
+\verb!\newcommand{\binv}{\backslash}! novo nome para o comando que imprime $\backslash$ .
+
+
+\verb!\newcommand{\til{\~{}}! o comando \verb!\til! agora imprime \~{}.
+
+	\subsection{Codificação:}
+	\label{sec:cod}
+	Para usar uma linguagem diferente da inglesa é preciso fazer alguns ``ajustes"\  para que o \LaTeX\  codifique corretamente o texto, para isso precisamos usar o pacote \verb!\usepackage[língua]{babel}!, o pacote \textbf{babel} irá ajustar automaticamente as características da língua que você escolheu, se você não tiver o pacote da língua instalado o documento irá compilar mas você não terá as traduções corretas na impressão do documento; você pode escolher mais de uma língua no pacote como: \verb!\usepackage[linguaA,linguaB]{babel}!.
+
+	Usamos também o pacote para a codificação do texto: 
+
+\verb!\usepackage[codificação]{inputenc}!, \textbf{inputenc} diz ao \LaTeX\ qual a codificação do arquivo .tex, assim você pode usar acentuação diretamente com as teclas do teclado; a codificação do arquivo depende do sistema operacional(UNIX,Windows...), é comum o uso da ISO-8859-1, para isso adicione o pacote:
+
+\verb!\usepackage[latin1]{inputenc}!.
+
+A maioria dos sistemas operacionais usam a decodificação Unicod(UTF-8) como padrão, para esses sistemas (como o Ubuntu) use o pacote:
+
+\verb!\usepackage[utf8]{inputenc}!.
+
+Para a língua portuguesa usamos os pacotes:
+
+\begin{center}
+\fbox{
+\parbox{10cm}{
+$\backslash$usepackage[portuguese]\{babel\}
+
+$\backslash$usepackage[latin1]\{inputenc\}
+
+$\backslash$usepackage[T1]\{fontenc\} %define o modelo de saída%
+}}
+\end{center}
+
+você pode substituir \textbf{portuguese} por \textbf{brazilian}, lembre-se de usar a codificação correta, se você definiu o arquivo como:
+
+UTF-8 use o pacote \verb!\usepackage[utf8]{inputenc}!, 
+
+ISO-8859-1 use o pacote \verb!\usepackage[latin1]{inputenc}!. 
+%-------------------------------------------------------------------------------------------------------------------------------------------------%
+	
+

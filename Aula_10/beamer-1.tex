@@ -1,0 +1,128 @@
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+% Descrição do Arquivo                                                       %
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+% Arquivo com a décima aula do curso de LaTeX dos bolsistas Instrutores.     %
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+\section{Beamer 1}
+
+\subsection{Estrutura básica}
+O \LaTeX tem uma classe destinada a fazer apresentação de slides que é o
+\emph{beamer}\footnote{É importante dizer que o \emph{beamer} não vem no
+  pacote mais básico do \LaTeX}. A estrutura mais básica de uma apresentação
+em \emph{beamer} é a seguinte : \\
+\begin{flushleft}
+  \verb!\documentclass{beamer}! \\
+  \verb!\begin{document}! \\
+    \hspace{1cm}\verb!\begin{frame}! \\
+      \hspace{1cm}\verb!\frametitle{Título do slide vai aqui}! \\
+      \hspace{1cm}Texto do slide vai aqui. \\
+    \hspace{1cm}\verb!\end{frame}! \\
+  \verb!\end{document}!
+\end{flushleft}
+
+Assim como qualquer tipo de documento em \LaTeX temos de especificar o tipo de
+documento, que nesse caso é o \emph{beamer}. Dentro do início e fim do
+documento é que temos os frames. Nos frames é aonde iremos colocar o texto
+para aparecer no slide. Isto significa que cada ambiente frame corresponde a
+um slide. E por fim temos o comando \emph{frametitle} que como o nome já diz
+coloca o título para aquele slide em específico. Isso nos possibilita criarmos
+uma seção e dentro dela termos slides com diferentes títulos, isso será
+explorado mais a frente.
+
+
+É importante lembrar que dentro de um frame são válidos ambientes como
+itemize, enumerate, minipage, equation, figure e outros. A criação do título
+da apresentação continua sendo colocada no preambulo do documento só que nessa
+caso ela pode ser mais elaborada, como no exemplo abaixo :
+
+\begin{flushleft}
+\verb!\title{O nome do título}! \\
+\verb!\subtitle{Aqui vai o subtítulo}! \\
+\verb!\author{Eu \inst{1} \and Você \inst{2}}! \\
+\verb!\institute{!\\
+\hspace{1cm}\verb!\inst{1}! \\
+\hspace{1cm}\verb!Instituição A! \\
+\hspace{1cm}\verb!\and! \\
+\hspace{1cm}\verb!\inst{2}! \\
+\hspace{1cm}\verb!Instituição B! \\
+\verb!}! \\
+\verb!\date! \\
+\verb!\subject{Curso de LaTeX}!
+\end{flushleft}
+
+
+\subsection{Criando título}
+E para criar o título podemos fazer de duas maneiras. Uma usando o
+\emph{maketitle} e a outra por \verb!\frame{\titlepage}!, lembrando que ambas
+devem estar dentro de um frame. É recomendado que seja utilizado apenas um
+frase em separado para o título da apresentação.
+
+
+Para criarmos o índice da apresentação é bem simples, basta usar o já
+conhecido comando \emph{tableofcontents}. Nesse momento é importante dizer que
+ao criar as seções você deve fazê-las fora dos frames, a fim de deixar o seu
+documento melhor estruturado. O exemplo abaixo ilustra esse fato :
+
+\begin{flushleft}
+  \verb!\section{Assunto A}! \\
+  \verb!\begin{frame}! \\
+  \hspace{1cm}\verb!\frametitle{título do frame}! \\
+  \hspace{1cm} texto \ldots \\
+  \verb!\end{frame}! \\
+  \verb!\section{Assunto B}! \\
+  \verb!\begin{frame}! \\
+  \hspace{1cm}\verb!\frametitle{título do frame}! \\
+  \hspace{1cm} texto \ldots \\
+  \verb!\end{frame}! \\
+\end{flushleft}
+
+
+\subsection{Temas para o beamer}
+No \emph{beamer} temos a possibilidade de alterar o layout do documento de
+forma bastante simples. No preambulo podemos setar o tema que será usado na
+apresentação. Existem diversos deles e eles podem ser encontrados em :
+\url{http://www.pletscher.org/writings/latex/beamerthemes.php}
+No exemplo abaixo mostrar como setar o tema \emph{warsaw} :
+\begin{flushleft}
+  \verb!\usetheme{Warsaw}!
+\end{flushleft}
+
+
+\subsection{Blocos}
+O \emph{beamer} tem caixas de texto que normalmente são usadas para
+destacá-lo. Temos três tipos delas são :
+\begin{description}
+  \item [block] caixa de texto normal.
+
+  \item [alertblock] caixa de texto destinada a mensagens de aviso ou para
+    chamar atenção sobre alguns aspecto.
+
+  \item [exampleblock] como o próprio nome já diz essa caixa de texto serve
+    para colocar exemplos.
+\end{description}
+
+Abaixo temos um exemplo de como as caixas de texto são usadas :
+\begin{flushleft}
+\verb!\begin{frame}! \\
+ 
+   \hspace{1cm}\verb!\begin{block}{Essa é uma caixa}! \\
+      \hspace{1.5cm} Aqui vai o texto destina destinada a ela. \\
+   \hspace{1cm}\verb!\end{block}! \\
+
+   \hspace{1cm}\verb!\begin{block}{Essa é uma caixa de alerta}! \\
+      \hspace{1.5cm} Aqui vai o texto destina destinada a ela. \\
+   \hspace{1cm}\verb!\end{block}! \\
+
+   \hspace{1cm}\verb!\begin{block}{Essa é uma caixa de exemplo}! \\
+      \hspace{1.5cm} Aqui vai o texto destina destinada a ela. \\
+   \hspace{1cm}\verb!\end{block}! \\
+ 
+\verb!\end{frame}!
+\end{flushleft}
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%
+% REFERÊNCIAS                                                                %
+%http://www.math-linux.com/spip.php?article77
+%http://www.rennes.enst-bretagne.fr/~gbertran/pages/tutorials_latex.html
+%http://en.wikibooks.org/wiki/LaTeX/Presentations
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -%

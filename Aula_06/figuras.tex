@@ -1,0 +1,169 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Fala como adiciona imagens ou figuras aos texto feito em LaTeX, posiciona- %
+% mento, labels, caption, descrição com scfigure e wrapfigure. A geração de  %
+% lista de figuras ficou na parte de referências.                            %
+%----------------------------------------------------------------------------%
+\section{Inserindo figuras}
+Essa sessão mostra como são colocados elementos gráficos no \LaTeX.
+
+  \subsection{Formatos suportados}
+  O \LaTeX não gerência as imagens diretamente, o único processamento que é
+  feito é desenhar uma caixa aonde ela será inserida no documento. O pacote
+  \emph{graphicx} é quem irá fazer o trabalho gerênciá-las.
+
+  O único formato de imagem que pode ser usado \emph{ao compilar com o }
+  \LaTeX é o \textbf{eps}. Se estiver gerando um documento com o pdf\LaTeX
+  pode ser usado os seguinte formatos de imagem : \textbf{jpg, png, imagens
+    vetorizadas e eps}.
+
+  \subsection{Incluindo uma imagem}
+  Iremos usar o comando \emph{includegraphcis} do pacote \emph{graphicx} para
+  inserir as imagens ao documento, o comand possui as seguintes opções :
+  \begin{description}
+    \item [width] especifica a largura da imagem.
+
+    \item [height] especifica a altura da imagem.
+
+    \item [keepaspectratio] essa opção é setada por true ou false. Se for
+      setado como true, não distorce a imagem ao aumentar ou diminuir o seu
+      tamanho.
+
+    \item [scale] altera o tamanho da imagem em porcentagem, ou seja, 1 é o
+      tamanho original, 2 é o dobro, 0.5 é a metade e assim por diante.
+
+    \item [angle] rotaciona o imagem em graus no sentido anti-horário.
+  \end{description}
+
+  Abaixo iremos mostar uma série de exemplos do uso do comando
+  \emph{includegraphics}. 
+
+  O comando abaixo mostra a forma mais simples de colocar uma imagem:
+  \begin{verbatim}
+    \includegraphics{minha_foto.eps}
+  \end{verbatim}
+
+  Do que jeito que foi usado o comando a imagem será inserida sem
+  modificações. Vale lembrar que a busca pela imagem passada ao
+  includegraphics é procurada a partir do ditório corrente do documento que
+  é compilado pelo \LaTeX.
+
+  Um problema que acontece é quando o tamanho original da imagem é muito
+  grande. Isso faz com que o \LaTeX procure um lugar aonde ela possa ser
+  inserida resultando em efeitos indesejávies. Uma forma de contorna esse
+  problema é por seta os valores de altura e largura da imagem, como abaixo:
+  \begin{verbatim}
+    \includegraphics[width=xx, height=yy]{minha_foto.eps}
+  \end{verbatim}
+
+  Os valores xx e yy podem ser especificados em centimetros ou milimetros.
+  
+  Setar os valores de altura e largura pode distorcer a imagem e iss pode ser
+  resolvido de duas formas. Uma delas é por usar a opção \emph{scale} :
+  \begin{verbatim}
+    \includegraphics[scale=kk]{minha_foto.eps}
+  \end{verbatim}
+
+  Dessa forma podemo setar 1 se quisermos o tamanho original. Analogamente
+  podemos setar 0.5 para metade ou 0.25 para um quarto do tamanho original da
+  imagem.
+
+  A segunda forma seria por usar a opção \emph{keepaspectratio} :
+  \begin{verbatim}
+    \includegraphics[keepaspectratio=true, width=xx]{minha_foto.eps}
+  \end{verbatim}
+
+  \subsection{Ambiente figure}
+  Usar o ambiente \emph{figure} é interessante por uma séria de motivos que
+  vão desde alinhar liguras a colocar descrição ou fazer referências a ela,
+  abaixo temos um exemplo de como usá-lo :
+  \begin{verbatim}
+    \begin{figure}[htb]
+      \includegraphics{minha_foto.eps}
+    \end{figure}
+  \end{verbatim}
+
+  As opções do ambiente \emph{figure} são :
+  \begin{description}
+    \item [h] indica que a imagem dever ser colocado exatamente nesse local do
+      cumento.
+
+    \item [t] indica que a imagem deve ser colocada na parte de cima da
+      página.
+
+    \item [b] indica que a imagem deve ser colocada no fim da página.
+  \end{description}
+
+  Dentro do ambiente também podemos combinar uma série de comandos como
+  abaixo:
+  \begin{verbatim}
+    \begin{figure}[h]
+      \caption{Aqui vai uma descrição da imagem}
+      \label{fig:ref_minha_foto}
+      \centering
+      \includegraphics{minha_foto.eps}
+    \end{figure}
+  \end{verbatim}
+
+  Um aspecto importante é a ordem em que os comando são dados. Nesse caso será
+  colocado a descrição primeiro e depois a imagem. Se o comando label tivesse
+  ficado depois do includegraphics teriamos a descrição embaixo da figura. E
+  por fim comando label cria uma referência para o local aonde a imagem foi
+  inserida, caso queria fazer uma refência a ela basta fazer :
+  \begin{verbatim}
+    \ref{fig:ref_minha_foto}
+  \end{verbatim}
+
+  \subsection{Ambiente SCfigure}
+  Além do ambiente figure temos o SCfigure que serve para colocar a descrição
+  ao lado de uma imagem, que é feito da seguinte forma :
+  \begin{verbatim}
+    \begin{SCfigure}
+      \centering
+      \includegraphics{minha_foto.eps}
+      \caption{descrição ao lado da foto.}
+    \end{SCfigure}
+  \end{verbatim}
+
+  \subsection{Ambiente wrapfigure}
+  Outro efeito que podemos controlar via ambiente é o posicionamento de um
+  texto junto a uma imagem. Para usá-lo devemos incluir o pacote
+  \emph{wrapfigure} no preâmbulo. O comando \emph{wrapfigure} tem a seguinte
+  sintaxe:
+  \begin{verbatim}
+    \begin{wrapfigure}{alinhamento}{comprimento}
+  \end{verbatim}
+  O campo alinhamento é referente a posição do texto, que pode ser r para
+  direita e l para esquerda. O campo comprimento é refente ao tamanho do
+  quadro a ser montado pelo wrapfigure para por a imagem dentro.
+
+  No exemplo abaixo usamos \emph{textwidth} que é um tamanho relativo ao texto
+  para facilitar disposição dos elementos.
+
+  \begin{verbatim}
+    \begin{wrapfigure}{r}{0.5\textwidth}
+      \begin{center}
+        \includegraphics[width=0.48\textwidth]{imagem.eps}
+      \end{center}
+      \caption{Uma imagem}
+    \end{wrapfigure}
+  \end{verbatim}
+
+  \subsection{Usando subfigure com imagens}
+  O ambiente \emph{subfigure} pode ser usado tanto com imagens como
+  tabelas. Mas nesse caso estaremos interessados em trabalhar com
+  imagens. Usar subfigure é interessante pois podemos agrupar figuras e serem
+  tratadas dentro de um único ambiente, e para usá-lo devemos incluir o pacote
+  \emph{subfigure}.
+  \begin{verbatim}
+    \begin{figure}
+      \centering
+      \subfloat[figura 1]{ \includegraphics{minha_figura1.eps} }
+      \subfloat[figura 2]{ \includegraphics{minha_figura2.eps} }
+      \subfloat[figura 3]{ \includegraphics{minha_figura3.eps} }
+      \caption{Coleção de figuras}
+      \label{fig:colecao}
+    \end{figure}
+  \end{verbatim}
+%----------------------------------------------------------------------------%

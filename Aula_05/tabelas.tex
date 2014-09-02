@@ -1,0 +1,364 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Aula 05, tabelas:                                                       %
+% Tabelas(table e tabular), orientação de tabelas, multi linhas e colunas,
+% listas(itemize, enumeration e description), teoremas.
+%--------------------------------------------------------------------------- %
+%----------------------------------------------------------------------------%
+\section{Tabelas e listas:}
+	Tabelas(table e tabular), orientação de tabelas, multi linhas e colunas; listas(itemizes, enumeration e description), teoremas.
+
+	\subsection{Tabelas}
+	\subsubsection{Tabular:}	
+	Para criar tabelas usamos o ambiente \textbf{tabular}:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{tabular}{formato das colunas}
+	linhas
+	\end{tabular}
+	\end{verbatim}
+	\end{center}
+	
+	O \textbf{formato das colunas} define o número de colunas, suas características e o tipo de separação entre as colunas, os símbolos para o \textbf{formato das colunas} são:
+	
+	\textbf{l}, a coluna é alinhada à esquerda;
+
+	\textbf{c}, a coluna é centralizada;
+
+	\textbf{r}, a coluna é alinhada à direita;
+
+	no lugar dos símbolos \textbf{l}, \textbf{c} e \textbf{r} você pode usar o símbolo \textbf{p\{xcm\}}, que define o tamanho das linhas da coluna, onde \textbf{x} é o tamanho desejado; para definir o tipo de separação entre as colunas usamos os símbolos:
+
+	\verb!|! desenha uma linha vertical;
+	
+	\verb!||! desenha duas linhas verticais;
+
+	@\{texto\} insere o \textbf{texto} em todas as linhas, entre as duas colunas onde ele aparece.
+
+	As linhas devem conter as entradas de cada linha da tabelas separando colunas com o símbolo \textbf{\&} e terminadas com $\backslash$$\backslash$; você pode usar o comando $\backslash$hline entre as \textbf{linhas} para criar uma linha horizontal de comprimento igual ao da tabela, dois $\backslash$hline juntos criam duas linhas horizontais; para concatenar colunas usamos o comando:
+\verb!\multicolumn{número}{formato}{texto}!, que concatena \textbf{número} colunas, o \textbf{formato} deve conter um dos símbolos para definir colunas(l, r ou c) e o tipo de separação(\verb!|!,\verb!||!).
+	
+	\vspace{0.5cm}
+	Vamos construir uma tabela simples:
+
+	\label{sec:tabu}
+	\begin{center}
+	\begin{verbatim}
+	\begin{center}
+	\begin{tabular}{|l||c|c|c|c|c|}
+	\hline
+	\multicolumn{6}{|c}}{\textbf{1 semestre 2011}}\\
+	\hline
+	Horário &Seg &Ter &Qua &Qui &Sex\\
+	\hline\hline
+	13:30-14:30 & & & & & \\
+	\hline
+	14:30-15:30 & & & & & \\
+	\hline
+	15:30-17:30 & & & & & \\
+	\hline
+	17:30-19:00 & & & & & \\
+	\hline
+	19:00-21:00 & & & & & \\
+	\hline
+	21:00-22:00 & & & & & \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\end{verbatim}
+	\end{center}
+
+	\newpage
+	
+	Produz:
+
+	\begin{center}
+	\begin{tabular}{|l||c|c|c|c|c|}
+	\hline
+	\multicolumn{6}{|c|}{\textbf{1 semestre 2011}}\\
+	\hline
+	Horário &Seg &Ter &Qua &Qui &Sex\\
+	\hline\hline
+	13:30-14:30 & & & & & \\
+	\hline
+	14:30-15:30 & & & & & \\
+	\hline
+	15:30-17:30 & & & & & \\
+	\hline
+	17:30-19:00 & & & & & \\
+	\hline
+	19:00-21:00 & & & & & \\
+	\hline
+	21:00-22:00 & & & & & \\
+	\hline
+	\end{tabular}
+	\end{center}
+	
+	Para que uma coluna tenha mais de uma linha de texto, no formato das colunas use o símbolo \textbf{p\{xcm\}} com um tamanho pequeno o suficiente para forçar o \LaTeX\ a mudar de linha.
+
+	Para aumentar a distância entra as linhas use, entre o \verb!\begin{center}! e o \verb!\begin{tabular}!, o comando \verb!renewcommand{\arraystretch}{fator}!, onde \textbf{fator} é o número de vezes que a distância entre as linhas deve ser aumentada em relação ao padrão, por exemplo \textbf{fator} igual a 1.5, aumenta em 50\% a distância entre as linhas.
+
+	Para colorir uma célula de uma tabela você precisa adicionar o pacote: \verb!\usepackage[table]{xcolor}!, e use o comando:
+
+	\verb!\cellcolor[número]{cor}!, onde \textbf{número} é a intensidade da \textbf{cor} que você escolheu, você pode omitir o \textbf{número} e usar a intensidade padrão.
+ 
+	\subsubsection{Table:}
+	O ambiente \textbf{tabular} nem sempre satisfaz a sua necessidade quando do você precisa construir uma tabela, por isso usamos o ambiente \textbf{tabular} dentro do ambiente \textbf{table}:
+
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{table}[h!]
+	\caption{Exemplo}
+	\begin{center}
+	\begin{tabular}{|l|c|}	
+	\hline
+	A & B \\
+	\hline
+	C & D \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	\end{verbatim}
+	\end{center}
+
+	\newpage	
+
+	produz:
+
+	\begin{table}[h!]
+	\caption{Exemplo}
+	\begin{center}
+	\begin{tabular}{|l|c|}	
+	\hline
+	A & B \\
+	\hline
+	C & D \\
+	\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+
+	Com o ambiente \textbf{table}, você pode escolher onde a tabela será impressa na página, com \verb!\begin{table}[x]!, \textbf{x} define onde a tabela será impressa: 
+
+	\textbf{h}, onde foi declarada(\textbf{h}ere);
+
+	\textbf{t}, no topo da página(\textbf{t}op);
+
+	\textbf{b}, abaixo da página(\textbf{b}ottom);
+
+	\textbf{!}, força a tabela a ser posicionada onde você escolheu. 
+
+	Você pode com o ambiente \textbf{table} criar uma referência para a tabela com o comando \verb!\label{}!, e depois usar \verb!~\ref{}! para se referir a ela:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{table}
+	\begin{tabular}
+		.
+		.
+	\end{tabular}
+	\caption{Um exemplo de table}
+	\label{minha_tabela}
+	\end{table}
+	\end{verbatim}
+	\end{center}
+
+
+
+
+	\subsection{Listas:}
+	Uma lista é um ambiente no \LaTeX\ , não esqueça que você pode usar um ambiente dentro de outro para criar uma lista personalizada:
+
+	\subsubsection{itemize:}
+	O ambiente itemize produz uma lista onde os itens são procedidos de $\bullet$;
+
+	os itens são separados por um espaço adicional; exemplo:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{itemize}
+	\item item1
+	\item item2
+	\end{itemize}
+	\end{verbatim}
+	\end{center}
+	
+	produz:
+
+	\begin{itemize}
+	\item item1
+	\item item2
+	\end{itemize}
+	
+	\subsubsection{enumerate:}
+
+	O ambiente enumerate produz uma lista onde os itens são numerado em arábicos, no primeiro nível, letras no segundo e algaritmos romanos no terceiro nível; exemplo:
+
+	\begin{verbatim}
+	\begin{enumerate}
+	\item item de primeiro nível
+		\begin{enumerate}
+		\item item de segundo nível
+			\begin{enumerate}
+			\item item de terceiro nível
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+	\end{verbatim}
+
+	produz:
+	\begin{enumerate}
+	\item item de primeiro nível
+		\begin{enumerate}
+		\item item de segundo nível
+			\begin{enumerate}
+			\item item de terceiro nível
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+
+	\subsubsection{description:}
+	O ambiente description produz uma lista diferente das outras, pois você pode nomear cada item; exemplo:
+
+	\begin{verbatim}
+	\begin{description}
+	\item[primeiro] O primeiro item
+	\item[segundo] O segundo item
+	\end{description}
+	\end{verbatim}
+	
+	produz:
+
+	\begin{description}
+	\item[primeiro] O primeiro item 
+	\item[segundo] O segundo item
+	\end{description}
+	
+	você pode usar o comando \verb!\hfill! e o pulo de linha para ter um efeito diferente:
+
+	\begin{verbatim}
+	\begin{description}
+	\item[primeiro] \hfill \\
+	O primeiro item
+	\item[segundo] \hfill \\
+	O segundo item
+	\end{description}
+	\end{verbatim}
+	
+	produz:
+
+	\begin{description}
+	\item[primeiro] \hfill \\
+	O primeiro item
+	\item[segundo] \hfill \\
+	O segundo item
+	\end{description}
+
+	\subsection{Teoremas:}
+	Para escrever teoremas,lemas, corolários... você precisa do pacote:
+	\verb!\package{amsthm}!, 
+
+	agora é só definir o ambiente no corpo do documento com o comando:
+
+	\verb!\newtheorem{meu_ambiente}{definição}!,
+	\newtheorem{meu_ambiente}{definição}
+
+	usando o ambiente:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{meu_ambiente}
+	Texto
+	\end{meu_ambiente}
+	\end{verbatim}
+	\end{center}
+
+	produz:	
+	
+	\begin{meu_ambiente}
+	Texto
+	\end{meu_ambiente}
+
+	os teoremas definidos são numerados automaticamente e podem ser usados em qualquer parte do documento, para criar teoremas sem numeração usamos: \verb!\newtheorem*{}!; 
+
+	vamos ver alguns teoremas mais elaborados: 
+
+	\newtheorem{teo}{Teorema}[section]
+	\verb!\newtheorem{teo}{Teorema}[section]!,
+	\textbf{[section]} faz com que a seção seja impressa junto com o número do teorema;
+
+	\verb!\newtheorem{lema}[teo]{Lema}!,
+
+
+	\verb!\newthorem{cor}[teo]{Corolário}!
+
+	\verb!\newtheorem{prop}[teo]{Proposição}!
+
+	esses ambientes definidos com \textbf{[teo]} seguem a numeração do ambiente definido anteriormente \textbf{teo}, vamos ver o resultado:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{teo}[Pitágoras]
+	Em todo triângulo retângulo o quadrado do comprimento da hipotenusa
+	é igual a soma dos quadrados dos comprimentos dos catetos.
+	\end{teo}
+	\end{verbatim}
+	\end{center}
+
+	produz:
+	
+	\begin{teo}[Pitágoras]
+	Em todo triângulo retângulo o quadrado do comprimento da hipotenusa é igual a soma dos quadrados dos comprimentos dos catetos.
+	\end{teo}
+
+	Para provas de teoremas existe o ambiente especial \textbf{proof}:
+	
+	\begin{center}
+	\begin{verbatim}	
+	\begin{proof}[Prova de um teorema importante]
+	Prova do teorema
+	\end{proof}
+	\end{verbatim}
+	\end{center}
+
+	produz:
+
+	\begin{proof}[Prova de um teorema importante]
+	Prova do teorema
+	\end{proof}
+	
+	você pode também modificar o estilo da impressão dos teoremas com comando: \verb!\theoremstyle{estilo}!, onde \textbf{estilo} pode ser \textbf{plain}(padrão) usado para teoremas, lemas, preposições; \textbf{definition} usado para definições e exemplos; \textbf{remark} usado para notas; exemplo:
+
+	\begin{center}
+	\begin{verbatim}
+	\theoremstyle{definition}
+	\newtheorem{defi}{Definição}
+	\end{verbatim}
+	\end{center}
+
+	\theoremstyle{definition}
+	\newtheorem{defi}{Definição}
+
+	usando o ambiente criado:
+
+	\begin{center}
+	\begin{verbatim}
+	\begin{defi}
+	Definimos A como...
+	\end{defi}
+	\end{verbatim}
+	\end{center}
+
+	produz:
+
+	\begin{defi}
+	Definimos A como...
+	\end{defi}
+
+
+%--------------------------------------------------------------------------------------------------------------------%

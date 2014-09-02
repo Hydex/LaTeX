@@ -1,0 +1,187 @@
+%----------------------------------------------------------------------------%
+% /* Descrição do Arquivo */                                                 %
+%----------------------------------------------------------------------------%
+% Mostra como entrar no modo matemático, escrever símbolos e formulas usando %
+% frações, potências e outros.                                               %
+%----------------------------------------------------------------------------%
+\section{Modo Matemático 1}
+O modo matemático do \LaTeX é muito útil para escrever formulas,
+equações, provas e teoremas matemáticos. Para entrar no ambiente matemático
+basta fazer \verb!$ x^2 +2x -1$! ou \verb!\[ x^2 +2x -1\]!.
+
+Na verdade os símbolos \verb!$ ... $! são a forma abreviada de
+\verb!\begin{math} ... \end{math}!  assim como \verb!\[ ... \]! é a
+abreviação de \verb!\begin{equation} ... \end{equation}!. Existe uma
+diferença sutil entre o \emph{math} e \emph{equation} que será explorado mais
+adiante.
+
+
+  \subsection{Letras gregas e símbolos}
+  Como dito anteriormente o modo matemático é usado para facilitar a
+  vida de quem tem de escrever equações. Um exemplo disso pode ser visto
+  abaixo com a tabela das letras gregas.
+
+  \begin{table}[h]
+    \caption{Exemplo de letras gregas}
+    \centering
+    \begin{tabular}{|c|c|}
+      \hline
+      Simbolo & Como escrever em \LaTeX \\
+      \hline
+
+      $\alpha$ & \verb!\alpha! \\
+      \hline
+
+      $\beta$ & \verb!\beta! \\
+      \hline
+
+      $\gamma$ & \verb!\gamma! \\
+      \hline
+
+      $\delta$ & \verb!\dela! \\
+      \hline
+    \end{tabular}
+  \end{table}
+
+  Além disso ainda temos as seguinte formatações abaixo para letras :
+  \begin{table}[h]
+    \caption{Exemplos de formatação de símbolos}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      Comando em \LaTeX & Resultado esperado & Descrição \\
+      \hline
+
+      \verb!\mathnormal{l}! & $\mathnormal{l}$ & para notações
+      matemáticas. \\
+      \hline
+
+      \verb!\mathfrak{A}! & $\mathfrak{A}$ & usado em notações
+      algébricas. \\
+      \hline
+
+      \verb!\mathcal{A}! & $\mathcal{A}$ & usando em notações de
+      conjunto. \\
+      \hline
+
+      \verb!\mathbb{Z}! & $\mathbb{Z}$ & usado para conjuntos especiais. \\
+      \hline
+    \end{tabular}
+  \end{table}
+
+  Ainda existe mais tipos de formatação como \verb!a'! $a'$ e \verb!\vec{a}!
+  $\vec{a}$.
+
+  
+  Ainda com relação aos símbolos temos os relacionais, binários e
+  outros. Existe uma grande quantidade de símbolos em \LaTeX e é mais
+  interessante termos uma tabela com deles e ir aprendendo de acordo com a
+  necessidade. No link a seguir temos uma tabela bem completa dos símbolos
+  matemáticos : 
+  \url{http://amath.colorado.edu/documentation/LaTeX/Symbols.pdf}
+
+
+  \subsection{Potências e índices}
+  Para escrever potências e índices o \LaTeX se utiliza de uma ideia simples
+  que pode ser expandida para outros contextos.
+
+  Ao escrever um índice podemos pensar que ele está subscrito e para isso
+  iremos fazer \_\{escrever o índice\}. Então teremos o seguinte resultado :
+
+  \newpage
+
+  \begin{table}[h]
+    \centering
+
+    \begin{tabular}{c c}
+      Exemplo & Código \LaTeX \\
+
+      $a_0$ & \verb!$a_0$! \\
+
+      $\mathcal{C}_{l-1}$ & \verb!$\mathcal{C}_{l-1}$!
+    \end{tabular}
+  \end{table}
+
+  Com relação as potências podemos pensar que elas estão sobrescritas e
+  usaremos \^ para escrever a potência entre chaves, da seguinte forma :
+
+  \begin{table}[h]
+    \centering
+
+    \begin{tabular}{c c}
+      Exemplo & Código \LaTeX \\
+
+      $2^{n-1}$ & \verb!$2^{n-1}$! \\
+
+      $n^5 + 4n^2 + 2$ & \verb!$n^5 + 4n^2 + 2$!
+    \end{tabular}
+  \end{table}
+
+  E por fim ainda podemos misturar numa mesma equação índices e potências da
+  seguinte forma \verb!k_{n+1} = n^2 + k^2_n - k_{n-1}! resultando no exemplo
+  abaixo :
+  \[
+    k_{n+1} = n^2 + k^2_n - k_{n-1}
+  \]
+
+  \subsection{Frações}
+  A divisão pode ser escrita da forma tradicional usado símbolo \/ que é o
+  operador de divisão. Ou escrevê-la usando o comando \emph{frac} que deve se
+  informado o numero e denominador com a seguinte sintaxe
+  \verb!\frac{numero}{denominador}! . Um exemplo disso seria o seguinte
+  \verb!S_n = \frac{a_1(q^n -1)}{q-1}!
+  \[
+    S_n = \frac{a_1(q^n -1)}{q-1}
+  \]
+
+  E por fim ainda podemos colocar uma fração dentro da outro como no exemplo
+  \verb!\frac{\frac{1}{x}+\frac{1}{y}}{y-z}!
+  \[
+    \frac{\frac{1}{x}+\frac{1}{y}}{y-z}
+  \]
+
+  \subsection{Somatórios e produtório}
+  A escrita de somatórios e produtórios em \LaTeX é bastante simples e basta
+  fazer o seguinte para escrevê-los :
+
+  \begin{table}[h]
+    \caption{Como escrever somatório e produtório}
+    \centering
+
+    \begin{tabular}{|c|c|}
+      \hline
+      Expressão & Como escrever em \LaTeX \\
+
+      \hline
+      $\sum_{i = 0}^{n} a_i$ & \verb!$\sum_{i = 0}^{n} a_i$!\\
+
+      \hline
+      $\prod_{i = 0}^{n} a_i$ & \verb!$\prod_{i = 0}^{n} a_i$! \\
+
+      \hline
+    \end{tabular}
+  \end{table}
+
+  Repare que usando \$ para escrever uma equação ela ficou com uma aparência
+  não muito boa. Isso pode ser resolvido por usar o comando
+  \emph{displaystlye} dentro do modo matemático. Como no exemplo abaixo :
+
+  \newpage
+
+  \begin{table}[h]
+    \begin{tabular}{c c}
+      Sem \emph{displaystyle} & código em \LaTeX \\
+
+      $\sum_{i = 0}^{n} a_i$ & \verb!$\sum_{i = 0}^{n} a_i$! \\
+
+      Com \emph{displaystyle} & código em \LaTeX \\
+
+      $\displaystyle \sum_{i = 0}^{n} a_i$ &
+      \verb!$\displaystyle \sum_{i = 0}^{n} a_i$!
+    \end{tabular}
+  \end{table}
+
+  O comando \emph{displaystyle} pode ser usado não só apenas em
+  somatórios. Mas também em quanto expressão que for usada no modo matemático
+  com \emph{math} ou \$.
+
+%----------------------------------------------------------------------------%
